@@ -149,7 +149,7 @@
         case ATMVVMCollectionAutoLayoutWidth:{
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ATMVVM_Collection_ReusableView * footer = (ATMVVM_Collection_ReusableView *)[self collectionView:collectionView viewForSupplementaryElementOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
-            CGSize size = [footer systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
+            CGSize size = [footer systemLayoutSizeFittingSize:CGSizeMake(0, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
             size.width = ceilf(size.width);
             size.height = ceilf(size.height);
             return size;
