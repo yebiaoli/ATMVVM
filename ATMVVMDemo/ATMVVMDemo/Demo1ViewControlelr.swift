@@ -202,6 +202,7 @@ class Demo1ViewControlelr: UIViewController {
 //        layout.sectionFootersPinToVisibleBounds = true
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width * 0.7, height: 50)
+//        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 //        layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
 //        layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
         
