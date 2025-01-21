@@ -213,7 +213,7 @@ class Demo2ViewController: UIViewController {
     
     lazy var tableView:UITableView = {
         
-        let v = UITableView(frame: .zero, style: .plain)
+        let v = UITableView(frame: .zero, style: .grouped)
         v.backgroundColor = UIColor.clear
         v.backgroundColor = .random
         v.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)

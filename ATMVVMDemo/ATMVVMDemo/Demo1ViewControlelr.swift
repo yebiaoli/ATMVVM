@@ -22,7 +22,7 @@ class Demo1HeaderView: ATMVVM_Collection_ReusableView {
     override func setupLayout() {
         super.setupLayout()
         textLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(0)
             make.top.bottom.equalToSuperview().inset(0)
         }
         
@@ -49,7 +49,7 @@ class Demo1FooterView: ATMVVM_Collection_ReusableView {
         super.setupLayout()
         textLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(0)
-            make.top.bottom.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(0)
         }
     }
     
@@ -198,9 +198,12 @@ class Demo1ViewControlelr: UIViewController {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 25, right: 0)
-        layout.sectionHeadersPinToVisibleBounds = true
-        layout.sectionFootersPinToVisibleBounds = true
+//        layout.sectionHeadersPinToVisibleBounds = true
+//        layout.sectionFootersPinToVisibleBounds = true
         layout.scrollDirection = .vertical
+        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width * 0.7, height: 50)
+//        layout.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
+//        layout.footerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 50)
         
         let v = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
         v.backgroundColor = UIColor.clear
@@ -223,7 +226,6 @@ class Demo1ViewControlelr: UIViewController {
             make.edges.equalToSuperview()
         }
         listVM.viewProxy.autoLayoutCell = .height
-        listVM.viewProxy.autoLayoutCellMaxWidth = UIScreen.main.bounds.width * 0.7
         listVM.viewProxy.autoLayoutHeader = .height
         listVM.viewProxy.autoLayoutFooter = .height
         

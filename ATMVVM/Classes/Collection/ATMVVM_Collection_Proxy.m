@@ -106,19 +106,8 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     ATMVVM_Collection_ItemVM * itemVM = [self getItemVM:indexPath];
-    switch (self.autoLayoutHeader) {
-        case ATMVVMCollectionAutoLayoutHeight:{
-            ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
-            return [cell systemLayoutSizeFittingSize:CGSizeMake(self.autoLayoutCellMaxWidth, 0) withHorizontalFittingPriority:UILayoutPriorityRequired verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
-        }
-        case ATMVVMCollectionAutoLayoutWidth:{
-            ATMVVM_Collection_Cell * cell = (ATMVVM_Collection_Cell *)[self collectionView:collectionView cellForItemAtIndexPath:indexPath];
-            return [cell systemLayoutSizeFittingSize:CGSizeMake(0, self.autoLayoutCellMaxHeight) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
-        }
-        default:{
-            return itemVM.itemSize;
-        }
-    }
+    //self.autoLayoutHeader != ATMVVMCollectionAutoLayoutNone { respondsToSelector:(SEL)aSelector ...}
+    return itemVM.itemSize;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -128,12 +117,17 @@
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ATMVVM_Collection_ReusableView * header = (ATMVVM_Collection_ReusableView *)[self collectionView:collectionView viewForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
             CGSize size = [header systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, 0) withHorizontalFittingPriority:UILayoutPriorityRequired verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
+            size.width = ceilf(size.width);
+            size.height = ceilf(size.height);
             return size;
         }
         case ATMVVMCollectionAutoLayoutWidth:{
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ATMVVM_Collection_ReusableView * header = (ATMVVM_Collection_ReusableView *)[self collectionView:collectionView viewForSupplementaryElementOfKind:UICollectionElementKindSectionHeader atIndexPath:indexPath];
-            return [header systemLayoutSizeFittingSize:CGSizeMake(0, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
+            CGSize size = [header systemLayoutSizeFittingSize:CGSizeMake(0, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
+            size.width = ceilf(size.width);
+            size.height = ceilf(size.height);
+            return size;
         }
         default:{
             return sectionVM.headerSize;
@@ -147,12 +141,18 @@
         case ATMVVMCollectionAutoLayoutHeight:{
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ATMVVM_Collection_ReusableView * footer = (ATMVVM_Collection_ReusableView *)[self collectionView:collectionView viewForSupplementaryElementOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
-            return [footer systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, 0) withHorizontalFittingPriority:UILayoutPriorityRequired verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
+            CGSize size = [footer systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, 0) withHorizontalFittingPriority:UILayoutPriorityRequired verticalFittingPriority:UILayoutPriorityFittingSizeLevel];
+            size.width = ceilf(size.width);
+            size.height = ceilf(size.height);
+            return size;
         }
         case ATMVVMCollectionAutoLayoutWidth:{
             NSIndexPath * indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             ATMVVM_Collection_ReusableView * footer = (ATMVVM_Collection_ReusableView *)[self collectionView:collectionView viewForSupplementaryElementOfKind:UICollectionElementKindSectionFooter atIndexPath:indexPath];
-            return [footer systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
+            CGSize size = [footer systemLayoutSizeFittingSize:CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height) withHorizontalFittingPriority:UILayoutPriorityFittingSizeLevel verticalFittingPriority:UILayoutPriorityRequired];
+            size.width = ceilf(size.width);
+            size.height = ceilf(size.height);
+            return size;
         }
         default: {
             return sectionVM.footerSize;
@@ -188,6 +188,12 @@
 }
 
 - (BOOL)respondsToSelector:(SEL)aSelector{
+    if(self.autoLayoutCell != ATMVVMCollectionAutoLayoutNone){
+        SEL cellSizeSelector = @selector(collectionView:layout:sizeForItemAtIndexPath:);
+        if(cellSizeSelector == aSelector){
+            return NO;
+        }
+    }
     return [super respondsToSelector:aSelector] || (self.forwarder && [self.forwarder respondsToSelector:aSelector]);
 }
 

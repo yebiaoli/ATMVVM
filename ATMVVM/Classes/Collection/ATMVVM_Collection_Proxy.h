@@ -24,8 +24,6 @@
 @property (nonatomic, weak) id<ATMVVM_Collection_Proxy_Delegate> delegate; //只有部分功能的代理
 
 @property (nonatomic, assign) ATMVVMCollectionAutoLayout autoLayoutCell; //自适应类型(无/高度/宽度)
-@property (nonatomic, assign) CGFloat autoLayoutCellMaxWidth;              //autoLayoutCell == .height时生效
-@property (nonatomic, assign) CGFloat autoLayoutCellMaxHeight;              //autoLayoutCell == .width时生效
 @property (nonatomic, assign) ATMVVMCollectionAutoLayout autoLayoutHeader;
 @property (nonatomic, assign) ATMVVMCollectionAutoLayout autoLayoutFooter;
 
