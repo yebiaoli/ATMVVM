@@ -30,7 +30,17 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'ATMVVM/Classes/**/*'
+  s.source_files = 'ATMVVM/Classes/*.{h,m}'
+  
+  s.default_subspecs = ['Collection','Table']
+  
+  s.subspec 'Collection' do |ss|
+    ss.source_files = 'ATMVVM/Classes/Collection/**/*.{h,m}'
+  end
+  
+  s.subspec 'Table' do |ss|
+    ss.source_files = 'ATMVVM/Classes/Table/**/*.{h,m}'
+  end
   
   # s.resource_bundles = {
   #   'ATMVVM' => ['ATMVVM/Assets/*.png']

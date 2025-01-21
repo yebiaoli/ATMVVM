@@ -1,5 +1,9 @@
 PODS:
-  - ATMVVM (0.1)
+  - ATMVVM (0.1):
+    - ATMVVM/Collection (= 0.1)
+    - ATMVVM/Table (= 0.1)
+  - ATMVVM/Collection (0.1)
+  - ATMVVM/Table (0.1)
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
   - LookinServer/Core (1.2.8)
@@ -20,7 +24,7 @@ EXTERNAL SOURCES:
     :path: "../../ATMVVM"
 
 SPEC CHECKSUMS:
-  ATMVVM: a4b9bcbc28acd8c8bdcb793849de4ff25472802b
+  ATMVVM: bd9455583cf552f42ebb869c810455c92aadbaf1
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
