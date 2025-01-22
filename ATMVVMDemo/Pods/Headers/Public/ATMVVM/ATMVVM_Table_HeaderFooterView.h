@@ -1,1 +1,1 @@
-../../../../../ATMVVM/Classes/Table/ATMVVM_Table_HeaderFooterView.h
+../../../ATMVVM/ATMVVM/Classes/Table/ATMVVM_Table_HeaderFooterView.h

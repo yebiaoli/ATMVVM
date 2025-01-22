@@ -1,1 +1,1 @@
-../../../../../ATMVVM/Classes/Collection/ATMVVM_Collection_Cell.h
+../../../ATMVVM/ATMVVM/Classes/Collection/ATMVVM_Collection_Cell.h

@@ -18,19 +18,5 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "ATMVVM/Classes/*.{h,m}",
-  "default_subspecs": [
-    "Collection",
-    "Table"
-  ],
-  "subspecs": [
-    {
-      "name": "Collection",
-      "source_files": "ATMVVM/Classes/Collection/**/*.{h,m}"
-    },
-    {
-      "name": "Table",
-      "source_files": "ATMVVM/Classes/Table/**/*.{h,m}"
-    }
-  ]
+  "source_files": "ATMVVM/Classes/**/*"
 }
